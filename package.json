@@ -1,0 +1,19 @@
+{
+  "name": "twitterwebscraping",
+  "version": "1.0.0",
+  "description": "Hoya Hacks Project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ashleyyiu/TwitterWebScraping.git"
+  },
+  "author": "twitterwebscraping",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ashleyyiu/TwitterWebScraping/issues"
+  },
+  "homepage": "https://github.com/ashleyyiu/TwitterWebScraping#readme"
+}

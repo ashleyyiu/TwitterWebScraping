@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<scriptsrc="jquery-311.js"></script>
+	<script src="jquery-311.js"></script>
 	<style type="text/css">
 		body, html {
 			margin: 0;
@@ -16,13 +16,12 @@
 </head>
 <body>
 	<div id = "tweetContent">
-		<a href="javascript:readContent()">Tweet Content</heading>
+		<a href="javascript:readContent()">Tweet Content</a>
 		<script type="text/javascript">
 
     	function readContent() {
-			$.getJson("tweet.json", function(json) {
-				var j = JSON.parse(json);
-				alert(j.text);
+			$.getJSON('tweet.json', function(json) {
+				alert(json.text);
 			});
 		}
 

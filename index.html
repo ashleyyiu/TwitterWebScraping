@@ -21,7 +21,8 @@
 
     	function readContent() {
 			$.getJson("tweet.json", function(json) {
-				alert(json);
+				var j = JSON.parse(json);
+				alert(j.text);
 			});
 		}
 

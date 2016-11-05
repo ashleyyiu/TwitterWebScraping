@@ -10,7 +10,8 @@
   "dependencies": {
     "forever": "^0.15.3",
     "mongodb": "^2.2.11",
-    "twitter": "^1.4.0"
+    "twitter": "^1.4.0",
+    "jsonfile": "^2.4.0"
   },
   "repository": {
     "type": "git",

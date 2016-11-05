@@ -7,14 +7,41 @@
 			height: 100%;
 			overflow-y: hidden;
 		}
-		.map {
+		#map {
 			height: 100%;
 			width: 100%;
 		}
 	</style>
 </head>
 <body>
-	<iframe class="map" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDY4iYUvUwTltKL8hgjxNeG8ce0x_UpMhw&q=Washington+DC" allowfullscreen>
+	<div id="map"></div>
+	<script type="text/javascript">
+		var map, heatmap;
+
+		function initMap() {
+			map = new google.maps.Map(document.getElementById('map'), {
+				zoom: 12,
+				center: {lat: 38.9072, lng: -77.0369}
+			});	
+
+			heatmap = new google.maps.visualization.HeatmapLayer({
+				data: getPoints(),
+				map: map
+			});
+		}
+
+		function getPoints() {
+			return [
+				new google.maps.LatLng(37.782551, -122.445368),
+				new google.maps.LatLng(37.782745, -122.444586),
+				new google.maps.LatLng(37.782842, -122.443688),
+			];
+    	}
+	</script>
+
+	<script async defer
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnpMx0yYUoIAQAM0KwcI_24wU-d0sAtfI&libraries=visualization&callback=initMap">
+	</script>
 </iframe>
 </body>
 </html>

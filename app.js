@@ -53,6 +53,10 @@ MongoClient.connect(url, function(err, db) {
 
 
 var insertDocuments = function(db, tweet, callback) {
+
+  //If location coordinates exist, log it
+  if (tweet.coordinates != null)
+  {
   // Get the documents collection
   var collection = db.collection('documents');
 
@@ -71,6 +75,10 @@ var insertDocuments = function(db, tweet, callback) {
     console.log("--inserted a tweet into the database--");
     callback(result);
   });
+  }
+  else {
+      
+  }
 }
 
 // { created_at: 'Sat Nov 05 17:35:27 +0000 2016',

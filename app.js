@@ -64,13 +64,7 @@ var insertDocuments = function(db, tweet, callback) {
         "name": tweet.user.name,
         "text": tweet.text,
         "time": tweet.created_at,
-        if (tweet.coordinates.coordinates != null)
-        {
-            "location": tweet.coordinates.coordinates
-        }
-        else
-        {
-        }
+        "location": tweet.coordinates.coordinates
     }
   ], function(err, result) {
     assert.equal(err, null);

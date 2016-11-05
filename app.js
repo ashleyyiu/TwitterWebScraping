@@ -79,9 +79,11 @@ var insertDocuments = function(db, tweet, callback) {
   // Insert some documents
   collection.insert([
     {
-        "uid": tweet.user.id_str,
+        "uid": tweet.user.id,
+        "uidstr": tweet.user.id_str,
         "handle": tweet.user.screen_name,
         "name": tweet.user.name,
+        "url": tweet.url,
         "text": tweet.text,
         "time": tweet.created_at,
         "location": tweet.coordinates.coordinates,

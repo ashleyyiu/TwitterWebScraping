@@ -1,4 +1,0 @@
-export consumerkey='0NDgZM0aBD38ULjtYhhR69mY5';
-export consumersecret='4q3HRBF26DytNmp5qXjt24ETxLDzYbzhZepXGc4WHoSlvi9Pfq';
-export accesskey='3041579079-PRdFSY1JmwHqoZNSqSdzeofFx18Etysj0ZfY6mF';
-export accesssecret='8GCLPcdQiOIL3OH3nQ3KoFO3ltglK1AqJeTBeis4d79Wx';

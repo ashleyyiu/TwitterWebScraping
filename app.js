@@ -1,4 +1,5 @@
 var fs = require('fs');
+var jsonfile = require('jsonfile');
 var request = require('request');
 var consumerkey = '0NDgZM0aBD38ULjtYhhR69mY5';
 var consumersecret = '4q3HRBF26DytNmp5qXjt24ETxLDzYbzhZepXGc4WHoSlvi9Pfq';
@@ -69,12 +70,11 @@ var insertDocuments = function(db, tweet, callback) {
       "location": tweet.coordinates.coordinates,
       "verified": tweet.user.verified
   }
+  var file = 'tweet.json'
 
-  fs.writeFile("tweet.json", tweetJson, function(error) {
-      if (error) {
-          return console.log(error);
-      }
-  })
+  jsonfile.writeFile(file, tweetJson, function (error) {
+      console.log(error);
+  });
 
   // Insert some documents
   collection.insert([

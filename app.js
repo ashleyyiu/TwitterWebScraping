@@ -10,3 +10,22 @@ var config = {
 }
 
 var twitterClient = new twitter(config);
+
+twitterClient.stream('statuses/filter', {
+    locations: {
+        38.803819,
+        -77.130757,
+        39.000727,
+        -76.904082
+    },
+    function(stream) {
+        stream.on('data', function(event) {
+            // This is where we store the feeds into Mongo
+            console.log(event && event.text);
+        })
+
+        stream.on('error', fucntion(error) {
+            throw error;
+        })
+    }
+);

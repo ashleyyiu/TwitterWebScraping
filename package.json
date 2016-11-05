@@ -7,10 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "chalk": "^1.1.3",
     "forever": "^0.15.3",
     "mongodb": "^2.2.11",
-    "mongoose": "*",
     "twitter": "^1.4.0"
   },
   "repository": {

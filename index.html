@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<script>var jsonfile = require('jsonfile');</script>
+	<scriptsrc="jquery-311.js"></script>
 	<style type="text/css">
 		body, html {
 			margin: 0;
@@ -20,20 +20,9 @@
 		<script type="text/javascript">
 
     	function readContent() {
-
-			jsonfile.readFile("tweet.json", function (err, content) {
-				alert("HELLO");
-		        if (err)
-		        {
-		        	alert("ERROR");
-		        	
-		        } else {
-
-		        	alert(content);
-		        	console.dir(content);
-
-		        }
-		    });
+			$.getJson("tweet.json", function(json) {
+				alert(json);
+			});
 		}
 
 		var intervalID = window.setInterval(readContent, 1000);
@@ -49,7 +38,7 @@
 			map = new google.maps.Map(document.getElementById('map'), {
 				zoom: 12,
 				center: {lat: 38.9072, lng: -77.0369}
-			});	
+			});
 
 			heatmap = new google.maps.visualization.HeatmapLayer({
 				data: getPoints(),

@@ -16,11 +16,11 @@
 </head>
 <body>
 	<div id = "tweetContent">
-		
+
 		<script type="text/javascript">
 
     	function readContent() {
-			$.getJSON('tweet.json', function(json) {
+			var g = $.getJSON('tweet.json', function(json) {
 				alert(json.text);
 			});
 		}

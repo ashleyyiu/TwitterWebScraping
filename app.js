@@ -17,15 +17,49 @@ var config = {
 
 var twitterClient = new Twitter(config);
 
+// MongoDB
+var MongoClient = require('mongodb').MongoClient
+  , assert = require('assert');
 
-twitterClient.stream('statuses/filter', { locations: "-77.130757,38.803819,-76.904082,39.000727" },
-    function(stream) {
-        stream.on('data', function(event) {
-            // This is where we store the feeds into Mongo
-            console.log(event && event.text);
-        });
+// Connection URL
+var url = 'mongodb://ashleyyiu:HOYAHaxa16@ds145667.mlab.com:45667/districtdanger';
 
-        stream.on('error', function(error) {
-            console.log(error);
-        });
+// Use connect method to connect to the server
+MongoClient.connect(url, function(err, db) {
+  assert.equal(null, err);
+  console.log("Connected successfully to server");
+
+//Start capturing twitter stream
+    twitterClient.stream('statuses/filter', { locations: "-77.130757,38.803819,-76.904082,39.000727" },
+        function(stream) {
+            stream.on('data', function(event) {
+                // This is where we store the feeds into Mongo
+                console.log(event && event.text);
+
+                // Insert tweets into our database
+                insertDocuments(db, event.text, function(){
+                    // db.close();
+                });
+
+            });
+
+            stream.on('error', function(error) {
+                console.log(error);
+            });
+    });
+
 });
+
+
+var insertDocuments = function(db, tweetText, callback) {
+  // Get the documents collection
+  var collection = db.collection('documents');
+  // Insert some documents
+  collection.insert([
+    {tweet: tweetText}
+  ], function(err, result) {
+    assert.equal(err, null);
+    console.log("--inserted a tweet into the database--");
+    callback(result);
+  });
+}

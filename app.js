@@ -60,6 +60,22 @@ var insertDocuments = function(db, tweet, callback) {
   // Get the documents collection
   var collection = db.collection('documents');
 
+  var tweetJson = {
+      "uid": tweet.user.id_str,
+      "handle": tweet.user.screen_name,
+      "name": tweet.user.name,
+      "text": tweet.text,
+      "time": tweet.created_at,
+      "location": tweet.coordinates.coordinates,
+      "verified": tweet.user.verified
+  }
+
+  fs.writeFile("tweet.json", tweetJson, function(error) {
+      if (error) {
+          return console.log(error);
+      }
+  })
+
   // Insert some documents
   collection.insert([
     {

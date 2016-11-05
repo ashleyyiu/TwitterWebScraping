@@ -68,7 +68,8 @@ var insertDocuments = function(db, tweet, callback) {
         "name": tweet.user.name,
         "text": tweet.text,
         "time": tweet.created_at,
-        "location": tweet.coordinates.coordinates
+        "location": tweet.coordinates.coordinates,
+        "verified": tweet.user.verified
     }
   ], function(err, result) {
     assert.equal(err, null);
@@ -77,7 +78,7 @@ var insertDocuments = function(db, tweet, callback) {
   });
   }
   else {
-      
+
   }
 }
 

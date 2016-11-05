@@ -64,7 +64,13 @@ var insertDocuments = function(db, tweet, callback) {
         "name": tweet.user.name,
         "text": tweet.text,
         "time": tweet.created_at,
-        "location": tweet.coordinates.coordinates
+        if (tweet.coordinates.coordinates != null)
+        {
+            "location": tweet.coordinates.coordinates
+        }
+        else
+        {
+        }
     }
   ], function(err, result) {
     assert.equal(err, null);
@@ -85,7 +91,7 @@ var insertDocuments = function(db, tweet, callback) {
 //   in_reply_to_user_id: null,
 //   in_reply_to_user_id_str: null,
 //   in_reply_to_screen_name: null,
-//   user: 
+//   user:
 //    { id: 4628052082,
 //      id_str: '4628052082',
 //      name: 'Cj Craft',
@@ -126,7 +132,7 @@ var insertDocuments = function(db, tweet, callback) {
 //      notifications: null },
 //   geo: null,
 //   coordinates: null,
-//   place: 
+//   place:
 //    { id: 'dea1eac2d7ef8878',
 //      url: 'https://api.twitter.com/1.1/geo/id/dea1eac2d7ef8878.json',
 //      place_type: 'admin',
@@ -140,7 +146,7 @@ var insertDocuments = function(db, tweet, callback) {
 //   is_quote_status: false,
 //   retweet_count: 0,
 //   favorite_count: 0,
-//   entities: 
+//   entities:
 //    { hashtags: [],
 //      urls: [],
 //      user_mentions: [],
@@ -153,4 +159,3 @@ var insertDocuments = function(db, tweet, callback) {
 //   filter_level: 'low',
 //   lang: 'en',
 //   timestamp_ms: '1478367327525' }
-

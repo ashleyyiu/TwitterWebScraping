@@ -38,7 +38,7 @@ MongoClient.connect(url, function(err, db) {
                 console.log(event && event.text);
 
                 // Insert tweets into our database
-                insertDocuments(db, event.text, function(){
+                insertDocuments(db, event, function(){
                     // db.close();
                 });
 

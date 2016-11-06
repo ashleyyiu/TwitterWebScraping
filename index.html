@@ -11,7 +11,7 @@
 		}
 		#map {
 			height: 100%;
-			width: 100%;
+			width: calc(100% - 20em);
 		}
 	</style>
 </head>
@@ -74,24 +74,7 @@
     	}
 
 	</script>
-	<script type="text/javascript">
-		function filter(raw) {
-			function findStringsInString(string, strings) {
-				for (var i = 0; i < strings.length; i++) {
-					if (strings[i].search(string) != -1) return true;
-				}
-				return false;
-			}
-			var data = JSON.parse(raw);
-			var list = [];
-			for (var i = 0; i < data.length; i++) {
-				if (findStringsInString(data[i].text, ["shooting", "stabbing", "bombing", "burglary", "robbery"])) {
-					list.push(data[i]);
-				}
-			}
-			return list;
-		}
-	</script>
+	<script type="text/javascript" src="filter.js"></script>
 
 	<script async defer
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnpMx0yYUoIAQAM0KwcI_24wU-d0sAtfI&libraries=visualization&callback=initMap">

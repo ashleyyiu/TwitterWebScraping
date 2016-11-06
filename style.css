@@ -22,11 +22,12 @@
 
   display: block;
   position: absolute;
+ 
   height: 4%;
-  width: 30%;
+  width: 20em;
   top: 0;
-  left: 0;
   right: 0;
+
   background: rgba(255,255,255,.5);
 =======
 >>>>>>> 4310ed6efcdb390c53a6a66263ffd21b214107ec

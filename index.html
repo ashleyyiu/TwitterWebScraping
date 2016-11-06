@@ -28,17 +28,18 @@
 
     	function readContent() {
 			$.getJSON('tweet.json', function(json) {
+				
 				if (lastTweet != "")
 				{
 					if (lastTweet != json.text)
 					{
-						allTweets = ("</br>" + json.text) + allTweets +"</br>" ;
+						allTweets = ("</br><b>@" + json.handle + " </b>" + json.text) + "</br>"+ allTweets + "</br>" ;
 						document.getElementById("scrolltext").innerHTML = allTweets;
 						lastTweet = json.text;
 					}
 				} else {
 					lastTweet = json.text;
-					allTweets += json.text;
+					allTweets += "<b>@" + json.handle + " </b>" + json.text + "</br>";
 					document.getElementById("scrolltext").innerHTML = allTweets;
 				}
 			});

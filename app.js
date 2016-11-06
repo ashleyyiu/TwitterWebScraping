@@ -27,9 +27,9 @@ var url = 'mongodb://ashleyyiu:HOYAHaxa16@ds145667.mlab.com:45667/heroku_vvj5cj6
 
 // Use connect method to connect to the server
 
-//MongoClient.connect(url, function(err, db) {
-  //assert.equal(null, err);
- // console.log("Connected successfully to server");
+MongoClient.connect(url, function(err, db) {
+  assert.equal(null, err);
+ console.log("Connected successfully to server");
 
 //Start capturing twitter stream
     twitterClient.stream('statuses/filter', { locations: "-77.130757,38.803819,-76.904082,39.000727" },
@@ -48,7 +48,7 @@ var url = 'mongodb://ashleyyiu:HOYAHaxa16@ds145667.mlab.com:45667/heroku_vvj5cj6
             });
     });
 
-//});
+});
 
 
 function insertDocuments(tweet)

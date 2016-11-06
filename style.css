@@ -1,15 +1,12 @@
 #scrolltext {
 	z-index: 10;
-	border:1px solid #ccc;
 	font:16px/26px Georgia, Garamond, Serif;
 	overflow:auto;
 
   display: block;
   position: absolute;
-  height: 60%;
-  width: 30%;
+  height: 100%;
+  width: 20em;
   top: 0;
-  left: 0;
   right: 0;
-  background: rgba(255,255,255,.5);
 }

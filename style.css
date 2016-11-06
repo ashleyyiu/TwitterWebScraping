@@ -13,3 +13,20 @@
   right: 0;
   background: rgba(255,255,255,.5);
 }
+
+#scrollBoxHeader
+{
+	z-index: 12;
+	border:1px solid #ccc;
+	font:16px/26px Georgia, Garamond, Serif;
+	overflow:auto;
+
+  display: block;
+  position: absolute;
+  height: 4%;
+  width: 30%;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255,255,255,.5);
+}

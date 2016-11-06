@@ -18,16 +18,29 @@
 <body>
 
 	<div id="scrolltext"></div>
+	<header id="scrollBoxHeader"><u><b> Live Time Twitter Feed </u></b></br></header>
 
 	<div id = "tweetContent">
 
 		<script type="text/javascript">
-		var allTweets = "Live Time Twitter Feed\n";
+		var allTweets = "</br>";
+		var lastTweet = "";
 
     	function readContent() {
 			$.getJSON('tweet.json', function(json) {
-				allTweets += json.text;
-				document.getElementById("scrolltext").innerHTML = allTweets;
+				if (lastTweet != "")
+				{
+					if (lastTweet != json.text)
+					{
+						allTweets = ("</br>" + json.text) + allTweets +"</br>" ;
+						document.getElementById("scrolltext").innerHTML = allTweets;
+						lastTweet = json.text;
+					}
+				} else {
+					lastTweet = json.text;
+					allTweets += json.text;
+					document.getElementById("scrolltext").innerHTML = allTweets;
+				}
 			});
 		}
 

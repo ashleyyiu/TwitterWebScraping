@@ -14,6 +14,11 @@
 			width: calc(100% - 20em);
 		}
 	</style>
+
+	<title>
+		DMV Twitter Feed
+	</title>
+
 </head>
 <body>
 
@@ -36,7 +41,7 @@
 
     	function readContent() {
 			$.getJSON('tweet.json', function(json) {
-				
+
 				if (lastTweet != "")
 				{
 					if (lastTweet != json.text)

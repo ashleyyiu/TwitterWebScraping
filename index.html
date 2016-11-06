@@ -49,11 +49,13 @@
 							</div>
 							${allTweets}
 						`
+						addMarker(json);
 						//allTweets = ("</br><b>@" + json.handle + " </b>" + json.text) + "</br>"+ allTweets + "</br>" ;
 						document.getElementById("scrolltext").innerHTML = allTweets;
 						lastTweet = json.text;
 					}
 				} else {
+					addMarker(json);
 					lastTweet = json.text;
 					allTweets = `
 						<div class="tweet">
@@ -70,11 +72,7 @@
 
 		var intervalID = window.setInterval(readContent, 1000);
 
-		</script>
-	</div>
 
-	<div id="map"></div>
-	<script type="text/javascript">
 		var map, heatmap;
 
 		function initMap() {
@@ -82,20 +80,30 @@
 				zoom: 12,
 				center: {lat: 38.9072, lng: -77.0369}
 			});
-
-			heatmap = new google.maps.visualization.HeatmapLayer({
-				data: getPoints(),
-				map: map
-			});
 		}
 
-		function getPoints() {
-			return [
-				new google.maps.LatLng(37.782551, -122.445368),
-				new google.maps.LatLng(37.782745, -122.444586),
-				new google.maps.LatLng(37.782842, -122.443688),
-			];
-    	}
+		function addMarker(json) {
+
+			var infowindow = new google.maps.InfoWindow({content: `
+				<div class="tweet">
+					<span class="name">${json.name}</span> <span class="handle">@${json.handle}</span><br />
+					<span class="text">${json.text}</span>
+				</div>
+			`});
+
+			var marker = new google.maps.Marker({
+				position: {lat: json.location[1], lng: json.location[0]},
+				map: map
+			});
+			marker.addListener('click', function() {
+				infowindow.open(map, marker);
+			});
+		}
+		</script>
+	</div>
+
+	<div id="map"></div>
+	<script type="text/javascript">
 
 	</script>
 	<script type="text/javascript" src="filter.js"></script>

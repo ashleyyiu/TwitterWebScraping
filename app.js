@@ -27,9 +27,9 @@ var url = 'mongodb://ashleyyiu:HOYAHaxa16@ds145667.mlab.com:45667/heroku_vvj5cj6
 
 // Use connect method to connect to the server
 
-MongoClient.connect(url, function(err, db) {
-  assert.equal(null, err);
-  console.log("Connected successfully to server");
+//MongoClient.connect(url, function(err, db) {
+  //assert.equal(null, err);
+ // console.log("Connected successfully to server");
 
 //Start capturing twitter stream
     twitterClient.stream('statuses/filter', { locations: "-77.130757,38.803819,-76.904082,39.000727" },
@@ -39,9 +39,7 @@ MongoClient.connect(url, function(err, db) {
                 console.log(event);
 
                 // Insert tweets into our database
-                insertDocuments(db, event, function(){
-                    // db.close();
-                });
+                insertDocuments(event);
 
             });
 
@@ -50,9 +48,32 @@ MongoClient.connect(url, function(err, db) {
             });
     });
 
-});
+//});
 
 
+function insertDocuments(tweet)
+{
+    if (tweet.coordinates != null)
+    {
+    // Get the documents collection
+
+    var tweetJson = {
+        "uid": tweet.user.id_str,
+        "handle": tweet.user.screen_name,
+        "name": tweet.user.name,
+        "text": tweet.text,
+        "time": tweet.created_at,
+        "location": tweet.coordinates.coordinates,
+        "verified": tweet.user.verified
+    }
+    var file = 'tweet.json'
+
+    jsonfile.writeFile(file, tweetJson, function (error) {
+        console.log(error);
+    });
+}
+}
+/*
 var insertDocuments = function(db, tweet, callback) {
 
   //If location coordinates exist, log it
@@ -99,7 +120,7 @@ var insertDocuments = function(db, tweet, callback) {
 
   }
 }
-
+*/
 // { created_at: 'Sat Nov 05 17:35:27 +0000 2016',
 //   id: 794956305765138400,
 //   id_str: '794956305765138434',

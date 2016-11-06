@@ -1,6 +1,8 @@
-#scrolltext {
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+.sidebar {
 	z-index: 10;
-	font:16px/26px Georgia, Garamond, Serif;
+	font-family: "Roboto", sans-serif;
 	overflow:auto;
 
   display: block;
@@ -13,11 +15,40 @@
   background: rgba(255,255,255,.5);
 }
 
+.tweet {
+
+}
+
+.tweet .name {
+  font-weight: 900;
+}
+
+.tweet .handle {
+  font-size: 0.8em;
+}
+
+.tweet .bottom {
+  height: 0.08em;
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  background-color: #ccc;
+}
+
+.tweet .text {
+  font-size: 0.9em;
+}
+
+#scrolltext {
+  margin: 0.5em;
+}
+
 #scrollBoxHeader
 {
 	z-index: 12;
 	border:1px solid #ccc;
-	font:16px/26px Georgia, Garamond, Serif;
+  font-family: "Roboto", sans-serif;
 	overflow:auto;
 
   display: block;

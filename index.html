@@ -17,13 +17,21 @@
 </head>
 <body>
 
-	<div id="scrolltext"></div>
-	<header id="scrollBoxHeader"><u><b> Live Time Twitter Feed </u></b></br></header>
+	<div class="sidebar">
 
-	<div id = "tweetContent">
+		<div id="scrolltext">
+			<!--<div class="tweet">
+				<span class="name">Donald J. Trump</span> <span class="handle">@realDonaldTrump</span><br />
+				<span class="text">I've never seen a thin person drink Diet Coke.</span>
+				<div class="bottom"></div>
+			</div>-->
+		</div>
+	</div>
+
+	<div id="tweetContent">
 
 		<script type="text/javascript">
-		var allTweets = "</br>";
+		var allTweets = "";
 		var lastTweet = "";
 
     	function readContent() {
@@ -33,13 +41,28 @@
 				{
 					if (lastTweet != json.text)
 					{
-						allTweets = ("</br><b>@" + json.handle + " </b>" + json.text) + "</br>"+ allTweets + "</br>" ;
+						allTweets = `
+							<div class="tweet">
+								<span class="name">${json.name}</span> <span class="handle">@${json.handle}</span><br />
+								<span class="text">${json.text}</span>
+								<div class="bottom"></div>
+							</div>
+							${allTweets}
+						`
+						//allTweets = ("</br><b>@" + json.handle + " </b>" + json.text) + "</br>"+ allTweets + "</br>" ;
 						document.getElementById("scrolltext").innerHTML = allTweets;
 						lastTweet = json.text;
 					}
 				} else {
 					lastTweet = json.text;
-					allTweets += "<b>@" + json.handle + " </b>" + json.text + "</br>";
+					allTweets = `
+						<div class="tweet">
+							<span class="name">${json.name}</span> <span class="handle">@${json.handle}</span><br />
+							<span class="text">${json.text}</span>
+							<div class="bottom"></div>
+						</div>
+					`
+					//allTweets += "<b>@" + json.handle + " </b>" + json.text + "</br>";
 					document.getElementById("scrolltext").innerHTML = allTweets;
 				}
 			});

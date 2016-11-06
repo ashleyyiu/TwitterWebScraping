@@ -23,7 +23,7 @@ var MongoClient = require('mongodb').MongoClient
   , assert = require('assert');
 
 // Connection URL
-var url = 'mongodb://ashleyyiu:HOYAHaxa16@ds145667.mlab.com:45667/districtdanger';
+var url = 'mongodb://ashleyyiu:HOYAHaxa16@ds145667.mlab.com:45667/heroku_vvj5cj62';
 
 // Use connect method to connect to the server
 

@@ -1,2 +1,2 @@
-# TwitterWebScraping
-Hoya Hacks Project
+#TwitterWebScraping at Hoya Hacks 2016 (Washington, D.C.)
+We want to analyze realtime twitter feed within the Chesapeake Bay area to report on events (crime, natural disaster, etc.) before news agencies have time to do so themselves. Our app looks at geo location-enabled tweets posted in the area and places it on Google maps with a red marker. With this technology, we want to help people avoid danger by informing them of the danger zones near them

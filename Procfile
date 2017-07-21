@@ -1,1 +1,1 @@
-worker: node app.js
+worker: forever app.js

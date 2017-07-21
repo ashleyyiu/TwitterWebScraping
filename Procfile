@@ -1,1 +1,1 @@
-web: forever app.js
+worker: node app.js

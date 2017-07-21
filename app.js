@@ -19,24 +19,51 @@ var config = {
 var twitterClient = new Twitter(config);
 
 // MongoDB
-var MongoClient = require('mongodb').MongoClient
-  , assert = require('assert');
+var MongoClient = require('mongodb').MongoClient,
+    assert = require('assert');
 
 // Connection URL
-var url = 'mongodb://ashleyyiu:HOYAHaxa16@ds145667.mlab.com:45667/heroku_vvj5cj62';
+var url = 'mongodb://phi:1HZTE8VJXSHXh1fQ@upsilon-shard-00-00-qoojs.mongodb.net:27017,upsilon-shard-00-01-qoojs.mongodb.net:27017,upsilon-shard-00-02-qoojs.mongodb.net:27017/DMVTweetFeed?ssl=true&replicaSet=upsilon-shard-0&authSource=admin';
 
 // Use connect method to connect to the server
-// MongoClient.connect(url, function(err, db) {
-//   assert.equal(null, err);
-//  console.log("Connected successfully to server");
+MongoClient.connect(url, function(err, db) {
+    assert.equal(null, err);
+    console.log("Connected successfully to server");
 
-//Start capturing twitter stream
+    //Start capturing twitter stream
     twitterClient.stream('statuses/filter', { locations: "-77.130757,38.803819,-76.904082,39.000727" },
         function(stream) {
             stream.on('data', function(event) {
                 // This is where we store the feeds into Mongo
                 console.log(event);
+                var tweet = event;
+                db.collection("TweetFeed", function(err, collection) {
+                    collection.insert(event);
+                });
 
+                if (event.entities.media != null)
+                {
+                    medJson = {
+                        id : event.id_str,
+                        media_id : event.entities.media.id_str,
+                        media : event.entities.media.media_url,
+                        all_data : event.entities.media
+                    }
+                    db.collection("MediaFeed", function(err, collection) {
+                        collection.insert(medJson);
+                    })
+                }
+
+                db.collection('TweetFeed').count(function (err, count) {
+                    if (err) throw err;
+
+                    console.log('Total Rows: ' + count);
+                });
+                db.collection('MediaFeed').count(function (err, count) {
+                    if (err) throw err;
+
+                    console.log('Total Rows: ' + count);
+                });
                 // Insert tweets into our database
                 insertDocuments(event);
 
@@ -46,14 +73,13 @@ var url = 'mongodb://ashleyyiu:HOYAHaxa16@ds145667.mlab.com:45667/heroku_vvj5cj6
                 console.log(error);
             });
     });
-
 });
 
 
 function insertDocuments(tweet)
 {
-    if (tweet.coordinates != null)
-    {
+    //if (tweet.coordinates != null)
+    //{
     // Get the documents collection
 
     var tweetJson = {
@@ -67,8 +93,10 @@ function insertDocuments(tweet)
     }
     var file = 'tweet.json'
 
+
+
     jsonfile.writeFile(file, tweetJson, function (error) {
         console.log(error);
     });
-}
+    //}
 }
